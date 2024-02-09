@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <><div>
+      <head>GGG TEAM</head>
     </div>
+    
+    <body>
+
+    <div class="flex-container">
+      <div>
+
+        <img src='https://i.imgur.com/uV2l7zR.gif' alt="My Favorite Vegetable"></img>
+
+      </div>
+      <div>
+
+        <h1>Name: Drake</h1>
+        <h3>Scientific Name: Aubrey Drake Graham</h3>
+        <h3>Type of G: GO</h3>
+
+      </div>
+    </div>
+
+      </body>
+      </>
   );
 }
 
