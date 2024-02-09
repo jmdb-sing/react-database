@@ -9,7 +9,25 @@ head {
 
 .flex-container {
 
+  margin-top: 110px;
   display: flex;
   justify-content: space-evenly;
 
+}
+
+.info {
+
+  font-family: sans-serif;
+}
+
+#pros {
+
+  font-size: 25px;
+  color: green;
+}
+
+#cons {
+
+  font-size: 25px;
+  color: red;
 }
