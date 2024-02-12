@@ -1,34 +1,33 @@
 import './App.css';
 
+
 function App() {
   return (
     <div>
-      <div>
-        <head>
-          GGG TEAM
-        </head>
-      </div>
       
-      <body>
-  
-      <div class="flex-container">
-        <div>
-  
-          <img src='https://i.imgur.com/uV2l7zR.gif' alt="My Favorite Vegetable"></img>
-  
+    <div className='background'></div>
+    <div className='mainpage'>
+    <div>
+        <div className='header'>
+          <h1>Go, Grow, and Glow Tracker</h1>
         </div>
-        <div class="info">
-          <h1>Name: Kanye</h1>
-          <h3>Scientific Name: Aubrey Drake Graham</h3>
-          <h3>Type of G: GO</h3>
-
-          <h1 id='pros'>PROS: </h1>
-          <h1 id='cons'>CONS: </h1>
+        <div className='text'>
+          <p>Welcome to the Go, Grow, and Glow Tracker! In this website, you will be able to track all the food you eat and list them according to their type of food (Go, Grow, or Glow).</p>
         </div>
+        <div className='input'>
+          <input name="food" id="food"/>
+        </div>
+        <div className='button'>
+        <input name="submit" type="submit" id="submit" />
+        </div>
+        </div>
+      
+        
+        
+        </div>
+    
       </div>
 
-        </body>
-      </div>
   );
 }
 
