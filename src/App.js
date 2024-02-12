@@ -1,7 +1,10 @@
 import './App.css';
 
 
+
 function App() {
+
+
   return (
     <div>
       
@@ -16,17 +19,25 @@ function App() {
         </div>
         <div className='input'>
           <input name="food" id="food"/>
+          <input name="submit" type="submit" id="submit" />
         </div>
-        <div className='button'>
-        <input name="submit" type="submit" id="submit" />
+        <div className='checkboxes'>
+
+          <input type="checkbox" name="go" /><p>Go</p>
+          <input type="checkbox" name="grow" /><p>Grow</p>
+          <input type="checkbox" name="glow" /><p>Glow</p>
+          <input type="checkbox" name="N/A" /><p>N/A</p>
+
+        </div>
+        <div className='tracker'>
+        <div className='food'>
+          </div>
+        <div className='foodType'>
+          </div>
         </div>
         </div>
-      
-        
-        
         </div>
-    
-      </div>
+        </div>
 
   );
 }
