@@ -18,7 +18,7 @@ function App() {
   
         </div>
         <div class="info">
-          <h1>Name: Drake</h1>
+          <h1>Name: Kanye</h1>
           <h3>Scientific Name: Aubrey Drake Graham</h3>
           <h3>Type of G: GO</h3>
 
