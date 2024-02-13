@@ -110,5 +110,34 @@
   display: block;
   background-color: white;
   margin: 50px;
+  display: flex;
+  width: 92%;
+  height: 57vh;
   
+}
+
+.tracker > div {
+
+  background-color: rgb(0, 0, 0);
+  margin: 10px;
+  text-align: center;
+  line-height: 50px;
+  height: 5vh;
+  font-size: 15px;
+
+}
+
+.food h3{
+
+  color: white;
+  width: 700px;
+  display: block;
+
+}
+
+.foodType h3 {
+
+  color: white;
+  width: 300px;
+
 }
