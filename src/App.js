@@ -1,11 +1,22 @@
 import './App.css';
-
-
+import {useState} from 'react';
 
 function App() {
 
+  const [value, setValue] = useState("");
+  const click = () => {
+
+    alert(value);
+
+  }
+  const change = e => {
+
+    setValue(e.target.value);
+
+  }
 
   return (
+    <form onSubmit={click}>
     <div>
       
     <div className='background'></div>
@@ -18,8 +29,8 @@ function App() {
           <p>Welcome to the Go, Grow, and Glow Tracker! In this website, you will be able to track all the food you eat and list them according to their type of food (Go, Grow, or Glow).</p>
         </div>
         <div className='input'>
-          <input name="food" id="food"/>
-          <input name="submit" type="submit" id="submit" />
+          <input name="food" id="food" onChange={change} value={value}/>
+          <input name="submit" type="submit" id="submit"/>
         </div>
         <div className='checkboxes'>
 
@@ -33,7 +44,6 @@ function App() {
 
         <div className='food'>
             <h3>Food</h3>
-            <h1>hello</h1>
           </div>
 
         <div className='foodType'>
@@ -50,7 +60,7 @@ function App() {
         
         </div>
     
-
+        </form>
 
   );
 }
