@@ -3,20 +3,34 @@ import {useState} from 'react';
 
 function App() {
 
-  const [value, setValue] = useState("");
-  const click = () => {
+const [data, setData]=useState(null);
+const [print, setPrint]=useState(false);
+const [check, setCheck] = useState([]);
 
-    alert(value);
+function handleChange(e){
+
+  if(e.target.value){
+
+    setCheck([...check, e.target.value]);
 
   }
-  const change = e => {
 
-    setValue(e.target.value);
+  else {
+
+    setCheck(check.filter((item) => item !== e.target.value))
 
   }
+
+}
+
+function getData(value){
+
+  setData(value.target.value)
+  setPrint(false)
+
+}
 
   return (
-    <form onSubmit={click}>
     <div>
       
     <div className='background'></div>
@@ -29,39 +43,38 @@ function App() {
           <p>Welcome to the Go, Grow, and Glow Tracker! In this website, you will be able to track all the food you eat and list them according to their type of food (Go, Grow, or Glow).</p>
         </div>
         <div className='input'>
-          <input name="food" id="food" onChange={change} value={value}/>
-          <input name="submit" type="submit" id="submit"/>
+          <input name="food" id="food" onChange={getData} maxLength={24}/>
+          <input name="submit" type="button" value="Submit" id="submit" onClick={()=>setPrint(true)}/>
         </div>
         <div className='checkboxes'>
 
-          <input type="checkbox" name="go" /><p>Go</p>
-          <input type="checkbox" name="grow" /><p>Grow</p>
-          <input type="checkbox" name="glow" /><p>Glow</p>
-          <input type="checkbox" name="N/A" /><p>N/A</p>
+          <input type="checkbox" value="Go" onChange={handleChange}/><p>Go</p>
+          <input type="checkbox" value="Grow" onChange={handleChange}/><p>Grow</p>
+          <input type="checkbox" value="Glow" onChange={handleChange}/><p>Glow</p>
+          <input type="checkbox" value="N/A" onChange={handleChange}/><p>N/A</p>
 
         </div>
         <div className='tracker'>
 
         <div className='food'>
             <h3>Food</h3>
-          </div>
+            {
 
+              print?
+              <p>{data}</p>
+              :null
+
+            }
+          </div>
         <div className='foodType'>
             <h3>Food Type</h3>
+            <p>{check.join(" , ")}</p>
           </div>
-
-
-        </div>
-     
         </div>
         </div>
-      
-        
-        
+        </div>
         </div>
     
-        </form>
-
   );
 }
 
