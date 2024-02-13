@@ -30,14 +30,27 @@ function App() {
 
         </div>
         <div className='tracker'>
+
         <div className='food'>
+            <h3>Food</h3>
+            <h1>hello</h1>
           </div>
+
         <div className='foodType'>
+            <h3>Food Type</h3>
           </div>
+
+
+        </div>
+     
         </div>
         </div>
+      
+        
+        
         </div>
-        </div>
+    
+
 
   );
 }
