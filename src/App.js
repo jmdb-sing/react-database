@@ -3,10 +3,8 @@ import { useState } from 'react';
 
 function App() {
   const [data, setData] = useState('');
-  const [print, setPrint] = useState(false);
-  const [check, setCheck] = useState([]);
   const [checkedValues, setCheckedValues] = useState([]);
-  const [foodNames, setFoodNames] = useState([]);
+  const [foodEntries, setFoodEntries] = useState([]); // Store both food names and types
 
   function handleChange(event) {
     const { value, checked } = event.target;
@@ -20,12 +18,33 @@ function App() {
 
   function getData(event) {
     setData(event.target.value);
-    setPrint(false);
   }
 
   function handleFoodSubmit() {
-    setFoodNames(prev => [data, ...prev]);
-    setPrint(true);
+    if (data.trim() !== '' && checkedValues.length > 0) {
+      // Check if the food name already exists in the entries
+      const existingEntryIndex = foodEntries.findIndex(entry => entry.name === data.trim());
+
+      if (existingEntryIndex !== -1) {
+        // If exists, update its associated type
+        const updatedEntry = { ...foodEntries[existingEntryIndex], type: checkedValues.join(', ') };
+        setFoodEntries(prev => [
+          updatedEntry,
+          ...prev.slice(0, existingEntryIndex),
+          ...prev.slice(existingEntryIndex + 1),
+        ]);
+      } else {
+        // If not exists, create a new entry
+        const newEntry = {
+          name: data.trim(),
+          type: checkedValues.join(', '),
+        };
+        setFoodEntries(prev => [newEntry, ...prev]);
+      }
+
+      setCheckedValues([]); // Clear the selected food types after submission
+      setData(''); // Clear the input field after submission
+    }
   }
 
   return (
@@ -40,7 +59,7 @@ function App() {
             <p>Welcome to the Go, Grow, and Glow Tracker! In this website, you will be able to track all the food you eat and list them according to their type of food (Go, Grow, or Glow).</p>
           </div>
           <div className='input'>
-            <input name="food" id="food" onChange={getData} maxLength={24} />
+            <input name="food" id="food" onChange={getData} maxLength={24} value={data} />
             <input name="submit" type="button" value="Submit" id="submit" onClick={handleFoodSubmit} />
           </div>
           <div className='checkboxes'>
@@ -50,20 +69,22 @@ function App() {
             <input type="checkbox" value="N/A" onChange={handleChange} /><p>N/A</p>
           </div>
           <div className='tracker'>
-          <div className='foodNames'>
+            <div className='foodNames'>
               <h3>Food Names</h3>
-              {foodNames.map((name, index) => (
-                <p key={index}>{name}</p>
+              {foodEntries.map((entry, index) => (
+                <p key={index}>{entry.name}</p>
               ))}
             </div>
             <div className='foodType'>
               <h3>Food Type</h3>
-              <p>{checkedValues.join(" , ")}</p>
-            </div>
+              {foodEntries.map((entry, index) => (
+                <p key={index}>{entry.type}</p>
+              ))}
             </div>
           </div>
         </div>
       </div>
+    </div>
   );
 }
 
