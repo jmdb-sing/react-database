@@ -60,7 +60,6 @@ function App() {
               <h3>Food Type</h3>
               <p>{checkedValues.join(" , ")}</p>
             </div>
-            
             </div>
           </div>
         </div>
