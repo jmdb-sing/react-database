@@ -6,22 +6,28 @@ function App() {
 const [data, setData]=useState(null);
 const [print, setPrint]=useState(false);
 const [check, setCheck] = useState([]);
+const [checkedValues, setValue] = useState([]);
 
-function handleChange(e){
+function handleChange(event){
 
-  if(e.target.value){
-
-    setCheck([...check, e.target.value]);
+  const {value, checked} = event.target
+  
+  if(checked ){
+    setValue(pre => [...pre,value]);
 
   }
 
   else {
+    setValue(pre=>{{
+      return [...pre.filter(skill => skill!==value)]
 
-    setCheck(check.filter((item) => item !== e.target.value))
+    }})
 
   }
 
 }
+console.log(checkedValues)
+
 
 function getData(value){
 
