@@ -6,6 +6,7 @@ function App() {
   const [print, setPrint] = useState(false);
   const [check, setCheck] = useState([]);
   const [checkedValues, setCheckedValues] = useState([]);
+  const [foodNames, setFoodNames] = useState([]);
 
   function handleChange(event) {
     const { value, checked } = event.target;
@@ -22,6 +23,11 @@ function App() {
     setPrint(false);
   }
 
+  function handleFoodSubmit() {
+    setFoodNames(prev => [data, ...prev]);
+    setPrint(true);
+  }
+
   return (
     <div>
       <div className='background'></div>
@@ -35,7 +41,7 @@ function App() {
           </div>
           <div className='input'>
             <input name="food" id="food" onChange={getData} maxLength={24} />
-            <input name="submit" type="button" value="Submit" id="submit" onClick={() => setPrint(true)} />
+            <input name="submit" type="button" value="Submit" id="submit" onClick={handleFoodSubmit} />
           </div>
           <div className='checkboxes'>
             <input type="checkbox" value="Go" onChange={handleChange} /><p>Go</p>
@@ -44,18 +50,21 @@ function App() {
             <input type="checkbox" value="N/A" onChange={handleChange} /><p>N/A</p>
           </div>
           <div className='tracker'>
-            <div className='food'>
-              <h3>Food</h3>
-              {print && <p>{data}</p>}
+          <div className='foodNames'>
+              <h3>Food Names</h3>
+              {foodNames.map((name, index) => (
+                <p key={index}>{name}</p>
+              ))}
             </div>
             <div className='foodType'>
               <h3>Food Type</h3>
               <p>{checkedValues.join(" , ")}</p>
             </div>
+            
+            </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
