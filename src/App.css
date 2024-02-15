@@ -1,12 +1,10 @@
-*{
-
+* {
   padding: 0;
   margin: 0;
-
+  box-sizing: border-box;
 }
 
 .background {
-
   width: 100%;
   height: 100vh;
   background-position: center;
@@ -16,48 +14,37 @@
 }
 
 .mainpage {
-  
   text-align: center;
   position: fixed;
-  left : 20%;
-	top: 5%;
+  left: 20%;
+  top: 5%;
   width: 60%;
   height: 90vh;
-	background-color: rgba(256 , 256,256,0.5);
-  
-
+  background-color: rgba(256, 256, 256, 0.5);
 }
 
 .header {
-
   margin-top: 25px;
   font-family: "Archivo Black", sans-serif;
   font-weight: 400;
   font-style: normal;
   text-align: center;
   font-size: 30px;
-  
 }
 
 .text {
-
   margin-top: 15px;
   font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 20px;
-
 }
 
 .input {
-
   position: relative;
-  
-
 }
 
 #food {
-
   position: absolute;
   margin-top: 2%;
   margin-left: -47%;
@@ -66,87 +53,78 @@
   font-size: 38px;
   border: none;
   background-color: #e1ffea;
-  
 }
 
-#submit {
-
+#submit
+ {
   position: absolute;
   padding: 16px;
   margin-top: 2%;
   width: 10%;
-  left: 85%;
   border: none;
   border-radius: 10%;
   cursor: pointer;
   font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
+  z-index: 1; /* Adjusted z-index to bring buttons to the front */
+}
 
+#submit {
+  left: 85%;
 }
 
 .checkboxes {
-
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-top: 2.7%;
   margin-left: 50%;
   width: 30%;
-
   background-color: white;
-
-
+  z-index: 0; /* Adjusted z-index to send checkboxes to the back */
 }
 
 .checkboxes p {
-
   margin: 5px;
-
 }
 
 .tracker {
-
-  display: block;
-  background-color: white;
-  margin: 50px;
   display: flex;
-  width: 92%;
+  flex-wrap: wrap;
+  background-color: white;
+  margin: 5%;
+  width: 90%;
   height: 57vh;
-  
+  overflow-y: auto;
 }
 
 .tracker > div {
-
   background-color: rgb(0, 0, 0);
   margin: 10px;
   text-align: center;
   line-height: 50px;
   height: 5vh;
   font-size: 15px;
-
 }
 
-.food p {
+.foodNames,
+.foodType {
+  flex: 1;
+  width: 70%;
+}
 
+.foodNames p,
+.foodType p {
   font-size: 30px;
   font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
-
 }
 
-.food h3{
-
-  color: white;
-  width: 700px;
-  display: block;
-
-}
-
+.foodNames h3,
 .foodType h3 {
-
   color: white;
-  width: 300px;
-
+  display: block;
+  font-size: 25px;
 }
