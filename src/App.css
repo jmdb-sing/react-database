@@ -59,7 +59,7 @@
  {
   position: absolute;
   padding: 16px;
-  margin-top: 2%;
+  left: 85%;
   width: 10%;
   border: none;
   border-radius: 10%;
@@ -70,9 +70,21 @@
   z-index: 1; /* Adjusted z-index to bring buttons to the front */
 }
 
-#submit {
+#reset {
+  position: absolute;
+  padding: 16px;
   left: 85%;
+  margin-top: 4%;
+  width: 10%;
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  z-index: 1;
 }
+
 
 .checkboxes {
   display: flex;
