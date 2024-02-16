@@ -5,14 +5,21 @@ function App() {
   const [data, setData] = useState('');
   const [checkedValues, setCheckedValues] = useState([]);
   const [foodEntries, setFoodEntries] = useState([]);
+  const [checkboxState, setCheckboxState] = useState({
+    Go: false,
+    Grow: false,
+    Glow: false,
+    'N/A': false,
+  });
 
   function handleChange(event) {
     const { value, checked } = event.target;
+    setCheckboxState((prev) => ({ ...prev, [value]: checked }));
 
     if (checked) {
-      setCheckedValues(prev => [...prev, value]);
+      setCheckedValues((prev) => [...prev, value]);
     } else {
-      setCheckedValues(prev => prev.filter(skill => skill !== value));
+      setCheckedValues((prev) => prev.filter((skill) => skill !== value));
     }
   }
 
@@ -22,11 +29,16 @@ function App() {
 
   function handleFoodSubmit() {
     if (data.trim() !== '' && checkedValues.length > 0) {
-      const existingEntryIndex = foodEntries.findIndex(entry => entry.name === data.trim());
+      const existingEntryIndex = foodEntries.findIndex(
+        (entry) => entry.name === data.trim()
+      );
 
       if (existingEntryIndex !== -1) {
-        const updatedEntry = { ...foodEntries[existingEntryIndex], type: checkedValues.join(', ') };
-        setFoodEntries(prev => [
+        const updatedEntry = {
+          ...foodEntries[existingEntryIndex],
+          type: checkedValues.join(', '),
+        };
+        setFoodEntries((prev) => [
           updatedEntry,
           ...prev.slice(0, existingEntryIndex),
           ...prev.slice(existingEntryIndex + 1),
@@ -36,11 +48,17 @@ function App() {
           name: data.trim(),
           type: checkedValues.join(', '),
         };
-        setFoodEntries(prev => [newEntry, ...prev]);
+        setFoodEntries((prev) => [newEntry, ...prev]);
       }
 
       setCheckedValues([]);
       setData('');
+      setCheckboxState({
+        Go: false,
+        Grow: false,
+        Glow: false,
+        'N/A': false,
+      });
     }
   }
 
@@ -49,6 +67,8 @@ function App() {
     setCheckedValues([]);
     setData('');
   }
+
+  
 
   return (
     <div>
@@ -63,14 +83,18 @@ function App() {
           </div>
           <div className='input'>
             <input name="food" id="food" onChange={getData} maxLength={24} value={data} />
-            <input name="submit" type="button" value="Submit" id="submit" onClick={handleFoodSubmit} />
             <input name="reset" type="button" value="Reset" id="reset" onClick={handleReset} />
+            <input name="submit" type="button" value="Submit" id="submit" onClick={handleFoodSubmit} />
           </div>
           <div className='checkboxes'>
-            <input type="checkbox" value="Go" onChange={handleChange} /><p>Go</p>
-            <input type="checkbox" value="Grow" onChange={handleChange} /><p>Grow</p>
-            <input type="checkbox" value="Glow" onChange={handleChange} /><p>Glow</p>
-            <input type="checkbox" value="N/A" onChange={handleChange} /><p>N/A</p>
+            <input type='checkbox'value='Go'onChange={handleChange}checked={checkboxState.Go} />
+              <p>Go</p>
+            <input type='checkbox' value='Grow' onChange={handleChange} checked={checkboxState.Grow} />
+              <p>Grow</p>
+            <input type='checkbox' value='Glow' onChange={handleChange} checked={checkboxState.Glow} />
+              <p>Glow</p>
+        <input type='checkbox' value='N/A' onChange={handleChange} checked={checkboxState['N/A']} />
+              <p>N/A</p>
           </div>
           <div className='tracker'>
             <div className='foodNames'>
@@ -90,6 +114,7 @@ function App() {
       </div>
     </div>
   );
-}
+
+              }
 
 export default App;
