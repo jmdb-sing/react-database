@@ -4,7 +4,7 @@ import { useState } from 'react';
 function App() {
   const [data, setData] = useState('');
   const [checkedValues, setCheckedValues] = useState([]);
-  const [foodEntries, setFoodEntries] = useState([]); // Store both food names and types
+  const [foodEntries, setFoodEntries] = useState([]);
 
   function handleChange(event) {
     const { value, checked } = event.target;
@@ -22,11 +22,9 @@ function App() {
 
   function handleFoodSubmit() {
     if (data.trim() !== '' && checkedValues.length > 0) {
-      // Check if the food name already exists in the entries
       const existingEntryIndex = foodEntries.findIndex(entry => entry.name === data.trim());
 
       if (existingEntryIndex !== -1) {
-        // If exists, update its associated type
         const updatedEntry = { ...foodEntries[existingEntryIndex], type: checkedValues.join(', ') };
         setFoodEntries(prev => [
           updatedEntry,
@@ -34,7 +32,6 @@ function App() {
           ...prev.slice(existingEntryIndex + 1),
         ]);
       } else {
-        // If not exists, create a new entry
         const newEntry = {
           name: data.trim(),
           type: checkedValues.join(', '),
@@ -42,9 +39,15 @@ function App() {
         setFoodEntries(prev => [newEntry, ...prev]);
       }
 
-      setCheckedValues([]); // Clear the selected food types after submission
-      setData(''); // Clear the input field after submission
+      setCheckedValues([]);
+      setData('');
     }
+  }
+
+  function handleReset() {
+    setFoodEntries([]);
+    setCheckedValues([]);
+    setData('');
   }
 
   return (
@@ -61,6 +64,7 @@ function App() {
           <div className='input'>
             <input name="food" id="food" onChange={getData} maxLength={24} value={data} />
             <input name="submit" type="button" value="Submit" id="submit" onClick={handleFoodSubmit} />
+            <input name="reset" type="button" value="Reset" id="reset" onClick={handleReset} />
           </div>
           <div className='checkboxes'>
             <input type="checkbox" value="Go" onChange={handleChange} /><p>Go</p>
